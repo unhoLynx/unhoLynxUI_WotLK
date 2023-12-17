@@ -1,0 +1,7 @@
+## Interface: 30403
+## Title: unhoLynxUI_WotLK
+## Notes: Tweaks the default UI according to my personal taste.
+## Author: unhoLynx
+## Version: 0.0.1
+
+core.lua
