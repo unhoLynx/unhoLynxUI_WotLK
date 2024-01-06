@@ -7,34 +7,36 @@ print("|cff0000ff= = = = = = = = = = = = = = = = = = = = = = = = = = =")
 
 --GENERAL--
 
-UIErrorsFrame:SetScale(.7)
-UIErrorsFrame:SetAlpha(.5)
+UIErrorsFrame:SetScale(.8)
+UIErrorsFrame:SetAlpha(.8)
 BuffFrame:SetScale(1.2)
 MinimapCluster:SetScale(1.1)
+MainMenuBarTextureExtender:SetAlpha(0)
 
 --CASTING BAR--
 
+CastingBarFrame:SetScale(1.3)
+CastingBarFrame.Text:SetScale(.7)
 CastingBarFrame:ClearAllPoints()
-CastingBarFrame:SetPoint("CENTER",ActionButton6,23,130)
+CastingBarFrame:SetPoint("CENTER",ActionButton6,18,95)
 CastingBarFrame.SetPoint=function()end
-CastingBarFrame:SetScale(1)
-CastingBarFrame.Text:SetAlpha(0)
-CastingBarFrame.Icon:SetAlpha(0)
 
 --PLAYER FRAME--
 
-PlayerFrame:SetScale(1)
+PlayerFrame:SetScale(1.1)
 PlayerStatusTexture:SetScale(.01)
 PlayerFrameHealthBar:ClearAllPoints()
 PlayerFrameHealthBar:SetPoint("CENTER",PlayerFrame,49.5,17)
 PlayerFrameHealthBar.SetPoint=function()end
 PlayerFrameHealthBar:SetHeight(18)
 PlayerFrameManaBarTextLeft:SetAlpha(0)
-PlayerFrameManaBarTextRight:SetScale(1.6)
-PlayerFrameManaBarTextRight:SetAlpha(1)
-PlayerFrameManaBarTextRight:SetVertexColor(0,255,255)
+PlayerFrameManaBarTextRight:SetScale(2)
+PlayerFrameManaBarTextRight:SetVertexColor(0,0.8,1)
 PlayerFrameManaBarTextRight:ClearAllPoints()
-PlayerFrameManaBarTextRight:SetPoint("CENTER",ActionButton6,14,120)
+PlayerFrameManaBarTextRight:SetPoint("CENTER",ActionButton6,11,113)
+PlayerFrameHealthBarTextRight:SetScale(1.5)
+PlayerFrameHealthBarTextRight:ClearAllPoints()
+PlayerFrameHealthBarTextRight:SetPoint("RIGHT",-4,4)
 PlayerName:SetAlpha(0)
 
 --TARGET FRAME--
@@ -111,9 +113,11 @@ PetFrameManaBarTextRight:SetAlpha(0)
 
 --DEATH KNIGHT--
 
-RuneFrame:SetScale(1.2)
+RuneFrame:SetScale(1.4)
 RuneFrame:ClearAllPoints()
-RuneFrame:SetPoint("CENTER",ActionButton4,100,110)
+RuneFrame:SetPoint("CENTER",PlayerFrameManaBarTextRight,3,-20)
+RuneFrame:SetAlpha(0)
+RuneFrame:SetScale(0.0001)
 
 --ACTION BARS--
 
@@ -157,7 +161,7 @@ MainMenuExpBar.SetPoint=function()end
 MainMenuBarExpText:SetScale(2)
 MainMenuBarExpText:SetParent(UIParent)
 MainMenuBarExpText:ClearAllPoints()
-MainMenuBarExpText:SetPoint("BOTTOM",UIParent,0,70)
+MainMenuBarExpText:SetPoint("CENTER",UIParent,0,0)
 
 --KEYRING
 
@@ -172,7 +176,11 @@ MainMenuBarBackpackButton:ClearAllPoints()
 MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT",UIParent,-3,3)
 
 CharacterMicroButton:ClearAllPoints()
-CharacterMicroButton:SetPoint("CENTER",CharacterBag3Slot,-15,55)
+CharacterMicroButton:SetPoint("CENTER",CharacterBag3Slot,-7,47)
+
+CollectionsMicroButton:ClearAllPoints()
+CollectionsMicroButton:SetPoint("CENTER",CharacterMicroButton,0,35)
+CollectionsMicroButton.SetPoint=function() end
 
 --STANCE BAR
 
@@ -299,7 +307,7 @@ end
 SLASH_SSB1 = "/ssb"
 SlashCmdList["SSB"] = toggleSideBars
 
---COMMAND: MOCRO MENU--
+--COMMAND: MICRO MENU--
 
 local function hideMicroMenu()
 	for i, v in pairs({
@@ -309,10 +317,11 @@ local function hideMicroMenu()
 		AchievementMicroButton,
 		QuestLogMicroButton,
 		SocialsMicroButton,
+		CollectionsMicroButton,
 		PVPMicroButton,
 		LFGMicroButton,
 		MainMenuMicroButton,
-		HelpMicroButton}) do v:SetScale(0.01) end
+		HelpMicroButton}) do v:SetScale(0.0001) end
 	for i, v in pairs({
 		CharacterBag3Slot,
 		CharacterBag2Slot,
@@ -330,10 +339,11 @@ local function showMicroMenu()
 		AchievementMicroButton,
 		QuestLogMicroButton,
 		SocialsMicroButton,
+		CollectionsMicroButton,
 		PVPMicroButton,
 		LFGMicroButton,
 		MainMenuMicroButton,
-		HelpMicroButton}) do v:SetScale(0.7) end
+		HelpMicroButton}) do v:SetScale(1) end
 	for i, v in pairs({
 		CharacterBag3Slot,
 		CharacterBag2Slot,
