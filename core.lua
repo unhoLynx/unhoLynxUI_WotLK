@@ -1,7 +1,7 @@
 local name = UnitName("player")
 print("|cff0000ff= = = = = = = = = = = = = = = = = = = = = = = = = = =")
 print("Hello, " .. name .. "! You are using |cff00ffffunhoLynxUI|r for WoW Classic.")
-print("To show the list of coommands type |cff00ffff/uui|r.")
+print("To show the list of commands type |cff00ffff/uui|r.")
 print("|cff0000ff= = = = = = = = = = = = = = = = = = = = = = = = = = =")
 --/run print((select(4, GetBuildInfo())));
 
@@ -12,36 +12,30 @@ UIErrorsFrame:SetAlpha(.8)
 BuffFrame:SetScale(1.2)
 MinimapCluster:SetScale(1.1)
 MainMenuBarTextureExtender:SetAlpha(0)
+CompactRaidFrameContainer:SetScale(.8)
 
 --CASTING BAR--
 
-CastingBarFrame:SetScale(1.3)
+CastingBarFrame:SetScale(1.25)
 CastingBarFrame.Text:SetScale(.7)
 CastingBarFrame:ClearAllPoints()
-CastingBarFrame:SetPoint("CENTER",ActionButton6,18,95)
+CastingBarFrame:SetPoint("BOTTOM",UIParent,0,105)
 CastingBarFrame.SetPoint=function()end
 
 --PLAYER FRAME--
 
-PlayerFrame:SetScale(1.1)
+PlayerFrame:SetScale(1)
 PlayerStatusTexture:SetScale(.01)
 PlayerFrameHealthBar:ClearAllPoints()
 PlayerFrameHealthBar:SetPoint("CENTER",PlayerFrame,49.5,17)
 PlayerFrameHealthBar.SetPoint=function()end
 PlayerFrameHealthBar:SetHeight(18)
 PlayerFrameManaBarTextLeft:SetAlpha(0)
-PlayerFrameManaBarTextRight:SetScale(2)
-PlayerFrameManaBarTextRight:SetVertexColor(0,0.8,1)
-PlayerFrameManaBarTextRight:ClearAllPoints()
-PlayerFrameManaBarTextRight:SetPoint("CENTER",ActionButton6,11,113)
-PlayerFrameHealthBarTextRight:SetScale(1.5)
-PlayerFrameHealthBarTextRight:ClearAllPoints()
-PlayerFrameHealthBarTextRight:SetPoint("RIGHT",-4,4)
 PlayerName:SetAlpha(0)
 
 --TARGET FRAME--
 
-TargetFrame:SetScale(1.1)
+TargetFrame:SetScale(1)
 TargetFrameToT:SetScale(.83)
 TargetFrameToTTextureFrameName:SetAlpha(0)
 TargetFrameSpellBar:SetScale(1.4)
@@ -71,7 +65,7 @@ TargetFrameTextureFrame.ManaBarTextRight:SetPoint("LEFT",TargetFrameBackground,0
 
 --FOCUS FRAME--
 
-FocusFrame:SetScale(1)
+FocusFrame:SetScale(0.9)
 FocusFrameToT:SetScale(.83)
 FocusFrameToTTextureFrameName:SetAlpha(0)
 FocusFrameSpellBar:SetScale(1.4)
@@ -121,7 +115,9 @@ RuneFrame:SetScale(0.0001)
 
 --ACTION BARS--
 
---MISC
+	--MISCELLANEOUS--
+
+MainMenuBar:SetWidth(100)
 
 for i, v in pairs({
 	MainMenuBarLeftEndCap,
@@ -134,7 +130,13 @@ for i, v in pairs({
 	ActionBarUpButton,
 	ActionBarDownButton,
 	MainMenuBarPerformanceBarFrame,
-	MainMenuBarMaxLevelBar}) do v:Hide() 
+	MainMenuBarMaxLevelBar,
+	MainMenuMaxLevelBar0,
+	MainMenuMaxLevelBar1,
+	MainMenuMaxLevelBar2,
+	MainMenuMaxLevelBar3,
+	MainMenuBarOverlayFrame
+}) do v:Hide() 
 end
 
 --REPUTATION BAR
@@ -145,10 +147,10 @@ ReputationWatchBar:ClearAllPoints()
 ReputationWatchBar:SetPoint("TOP",UIParent,0,0)
 ReputationWatchBar.SetPoint=function()end
 
-ReputationWatchBar.OverlayFrame.Text:SetScale(2)
-ReputationWatchBar.OverlayFrame.Text:SetParent(UIParent)
-ReputationWatchBar.OverlayFrame.Text:ClearAllPoints()
-ReputationWatchBar.OverlayFrame.Text:SetPoint("TOP",UIParent,0,-50)
+--ReputationWatchBar.OverlayFrame.Text:SetScale(2)
+--ReputationWatchBar.OverlayFrame.Text:SetParent(UIParent)
+--ReputationWatchBar.OverlayFrame.Text:ClearAllPoints()
+--ReputationWatchBar.OverlayFrame.Text:SetPoint("TOP",UIParent,0,-50)
 
 --XP BAR
 
@@ -176,11 +178,7 @@ MainMenuBarBackpackButton:ClearAllPoints()
 MainMenuBarBackpackButton:SetPoint("BOTTOMRIGHT",UIParent,-3,3)
 
 CharacterMicroButton:ClearAllPoints()
-CharacterMicroButton:SetPoint("CENTER",CharacterBag3Slot,-7,47)
-
-CollectionsMicroButton:ClearAllPoints()
-CollectionsMicroButton:SetPoint("CENTER",CharacterMicroButton,0,35)
-CollectionsMicroButton.SetPoint=function() end
+CharacterMicroButton:SetPoint("CENTER",CharacterBag3Slot,-8,50)
 
 --STANCE BAR
 
@@ -191,7 +189,8 @@ StanceBarRight:SetAlpha(0)
 StanceBarRight.SetAlpha=function()end
 
 StanceButton1:ClearAllPoints()
-StanceButton1:SetPoint("LEFT",ActionButton1,-37,-5.5)
+--StanceButton1:SetPoint("LEFT",ActionButton1,-37,-4)
+StanceButton1:SetPoint("RIGHT",ActionButton12,37,-4)
 StanceButton2:ClearAllPoints()
 StanceButton2:SetPoint("CENTER",StanceButton1,0,35)
 StanceButton3:ClearAllPoints()
@@ -199,17 +198,18 @@ StanceButton3:SetPoint("CENTER",StanceButton2,0,35)
 
 --MAIN BARS
 
-for i = 1, 12 do _G["MultiBarLeftButton" .. i]:SetScale(.8) end
-for i = 1, 12 do _G["MultiBarRightButton" .. i]:SetScale(.8) end
+ActionButton1:ClearAllPoints()
+ActionButton1:SetPoint("CENTER",-230,-5)
+
+for i = 1, 12 do _G["MultiBarLeftButton" .. i]:SetScale(.7) end
+for i = 1, 12 do _G["MultiBarRightButton" .. i]:SetScale(.7) end
 MultiBarLeftButton1:ClearAllPoints()
 MultiBarLeftButton1:SetPoint("CENTER",MultiBarRightButton1,-41,0)
 
-for i = 1, 12 do _G["ActionButton" .. i]:SetScale(1.1) end
-MultiBarBottomLeft:SetScale(1.1)
-for i = 1, 6 do _G["MultiBarBottomRightButton" .. i]:SetScale(1.1) end
-
-ActionButton1:ClearAllPoints()
-ActionButton1:SetPoint("CENTER",-230,-1)
+for i = 1, 12 do _G["ActionButton" .. i]:SetScale(1) end
+MultiBarBottomLeft:SetScale(1)
+for i = 1, 6 do _G["MultiBarBottomRightButton" .. i]:SetScale(1) end
+for i = 7, 12 do _G["MultiBarBottomRightButton" .. i]:SetScale(0.8) end
 
 MultiBarBottomLeftButton1:ClearAllPoints()
 MultiBarBottomLeftButton1:SetPoint("CENTER",ActionButton1,0,42)
@@ -219,34 +219,45 @@ MultiBarBottomRightButton1:SetPoint("LEFT",ActionButton1,0,85)
 MultiBarBottomRightButton4:ClearAllPoints()
 MultiBarBottomRightButton4:SetPoint("LEFT",ActionButton10,0,85)
 
+-----
+
 MultiBarBottomRightButton7:ClearAllPoints()
-MultiBarBottomRightButton7:SetPoint("LEFT",ActionButton12,70,2.5)
+MultiBarBottomRightButton7:SetPoint("LEFT",ActionButton1,-95,78)
+
+MultiBarBottomRightButton8:ClearAllPoints()
+MultiBarBottomRightButton8:SetPoint("LEFT",MultiBarBottomRightButton7,0,-42)
+
+MultiBarBottomRightButton9:ClearAllPoints()
+MultiBarBottomRightButton9:SetPoint("LEFT",MultiBarBottomRightButton8,0,-42)
+
 MultiBarBottomRightButton10:ClearAllPoints()
-MultiBarBottomRightButton10:SetPoint("LEFT",MultiBarBottomRightButton7,0,42)
+MultiBarBottomRightButton10:SetPoint("LEFT",MultiBarBottomRightButton7,42,0)
+
+MultiBarBottomRightButton11:ClearAllPoints()
+MultiBarBottomRightButton11:SetPoint("LEFT",MultiBarBottomRightButton10,0,-42)
+
+MultiBarBottomRightButton12:ClearAllPoints()
+MultiBarBottomRightButton12:SetPoint("LEFT",MultiBarBottomRightButton11,0,-42)
 
 --PET ACTION BUTTONS--
+for i = 1, 3 do _G["PetActionButton" .. i]:SetScale(.7) end
 
-for i = 4, 7 do _G["PetActionButton" .. i]:SetScale(1.1) end   
-for i = 1, 3 do _G["PetActionButton" .. i]:SetScale(.8) end
+for i = 4, 7 do _G["PetActionButton" .. i]:SetScale(1) end   
 for i = 8, 10 do _G["PetActionButton" .. i]:SetScale(.6) end
+
+PetActionButton1:ClearAllPoints()
+PetActionButton1:SetPoint("CENTER",ActionButton8,-9.5,110)
+PetActionButton1.SetPoint=function() end
 
 PetActionButton4:ClearAllPoints()
 PetActionButton4:SetPoint("LEFT",ActionButton4,9,82)
 PetActionButton4.SetPoint=function() end
 
-PetActionButton1:ClearAllPoints()
-PetActionButton1:SetPoint("CENTER",ActionButton8,-9.5,106)
-PetActionButton1.SetPoint=function() end
-
 PetActionButton8:ClearAllPoints()
 PetActionButton8:SetPoint("CENTER",PetFrame,-10,30)
 PetActionButton8.SetPoint=function() end
 
-for i = 4, 7 do _G["PetActionButton" .. i]:SetScale(1.1) end   
-for i = 1, 3 do _G["PetActionButton" .. i]:SetScale(.8) end
-for i = 8, 10 do _G["PetActionButton" .. i]:SetScale(.6) end
-
---CLASSCOLORED FRAMES--
+	--CLASSCOLORED FRAMES--
 
 local f = CreateFrame("FRAME")
 f:RegisterEvent("PLAYER_TARGET_CHANGED") 
@@ -272,7 +283,7 @@ end
 hooksecurefunc("UnitFrameHealthBar_Update", ColourBar) 
 hooksecurefunc("HealthBar_OnValueChanged", function(self) ColourBar(self, self.unit) end)
 
---COMMAND: INFO--
+	--COMMAND: INFO--
 
 local function uuiCommands()
 	print("|cff0000ff= = = = = = =|cff00ffffLIST OF COMMANDS|r|cff0000ff= = = = = = =")
@@ -287,7 +298,7 @@ SLASH_UUI1 = "/uui"
 SLASH_UUI2 = "/UUI"
 SlashCmdList["UUI"] = uuiCommands
 
---COMMAND: PING--
+	--COMMAND: PING--
 
 local function showPing()
 	local pingValue = select(4,GetNetStats())
@@ -298,16 +309,16 @@ SLASH_PING1 = "/ping"
 SLASH_PING2 = "/PING"
 SlashCmdList["PING"] = showPing
 
---COMMAND: SHOWSIDEBARS--
+	--COMMAND: SHOWSIDEBARS--
 
 local function toggleSideBars()
 	local a = "InterfaceOptionsActionBarsPanelRight" b=_G[a] b:Click() b=_G[a.."Two"] b:Click()
 end
 
-SLASH_SSB1 = "/ssb"
-SlashCmdList["SSB"] = toggleSideBars
+SLASH_TSB1 = "/tsb"
+SlashCmdList["TSB"] = toggleSideBars
 
---COMMAND: MICRO MENU--
+	--COMMAND: MICRO MENU--
 
 local function hideMicroMenu()
 	for i, v in pairs({
@@ -366,7 +377,7 @@ SLASH_MM1 = "/mm"
 SLASH_MM2 = "/MM"
 SlashCmdList["MM"] = toggleMM
 
---COMMAND: KEYTEXT--
+	--COMMAND: KEYTEXT--
 
 local function keyText(s)
 	local r={
